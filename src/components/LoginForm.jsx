@@ -1,18 +1,22 @@
-import React from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormControl from '@material-ui/core/FormControl';
-import TextField from '@material-ui/core/TextField';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import AccountCircle from '@material-ui/icons/AccountCircle'
-import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
+import React from 'react'
+import classNames from 'classnames'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Visibility from '@material-ui/icons/Visibility'
+import VisibilityOff from '@material-ui/icons/VisibilityOff'
+import PersonOutline from '@material-ui/icons/PersonOutline'
+import LockOpen from '@material-ui/icons/LockOpen'
+import {
+  Grid,
+  Paper,
+  IconButton,
+  InputLabel,
+  Input,
+  InputAdornment,
+  FormControl,
+  TextField,
+  Button
+} from '@material-ui/core/'
 
 const styles = theme => ({
   root: {
@@ -45,7 +49,7 @@ const ranges = [
   },
 ];
 */
-class Pruebas extends React.Component {
+class LoginForm extends React.Component {
   state = {
     amount: '',
     password: '',
@@ -64,46 +68,58 @@ class Pruebas extends React.Component {
 
   render() {
     const { classes } = this.props;
-    return (
-      
+    return (    
       <div className={classes.root}>
       <Paper>
-        <Grid container spacing={8} alignItems="flex-end">
+        <Grid container spacing={8} alignItems="center">
           <Grid item>
-            <AccountCircle />
+            <PersonOutline />
           </Grid>
           <Grid item>
             <TextField id="input-with-icon-grid" label="User" />
           </Grid>
         </Grid>
-        <FormControl className={classNames(classes.margin, classes.textField)}>
-  
-          <InputLabel htmlFor="adornment-password">Password</InputLabel>
-          <Input
-            id="adornment-password"
-            type={this.state.showPassword ? 'text' : 'password'}
-            value={this.state.password}
-            onChange={this.handleChange('password')}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="Toggle password visibility"
-                  onClick={this.handleClickShowPassword}
-                >
-                  {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            }
-          />
-        </FormControl>
+        <Grid container spacing={8} alignItems="center">
+          <Grid item>
+            <LockOpen />
+          </Grid>
+          <Grid item>
+            <FormControl className={classNames(classes.margin, classes.textField)}>
+            <InputLabel htmlFor="adornment-password">Password</InputLabel>
+            <Input
+              id="adornment-password"
+              type={this.state.showPassword ? 'text' : 'password'}
+              value={this.state.password}
+              onChange={this.handleChange('password')}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="Toggle password visibility"
+                    onClick={this.handleClickShowPassword}
+                  >
+                    {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+                }
+              />
+            </FormControl>
+          </Grid>
+        </Grid>
+        <Grid container spacing={8}>
+          <Grid item>
+            <Button variant="outlined" className={classes.button}>
+              Login
+            </Button>
+          </Grid>
+        </Grid>
         </Paper>  
       </div>
     );
   }
 }
 
-Pruebas.propTypes = {
+LoginForm.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Pruebas);
+export default withStyles(styles)(LoginForm)
